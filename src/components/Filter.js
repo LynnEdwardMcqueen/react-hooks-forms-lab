@@ -1,7 +1,4 @@
 import React from "react";
-import searchString from "./ShoppingList.js";
-
-let boo = "EEK!"
 
 function Filter({ onCategoryChange, onSearchChange, search  }) {
   return (

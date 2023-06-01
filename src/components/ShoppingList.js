@@ -3,8 +3,6 @@ import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
 
-let searchBuffer = ""
-let searchString = ""
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -17,21 +15,9 @@ function ShoppingList({ items }) {
   
   function handleSearchChange(event) {
     event.preventDefault();
-    
-    searchBuffer = event.target.value
- //  if (event.key != 'Enter') {
-  //    setSearchText(searchBuffer)
-  //  }  else {
-  //    setSearchText("Search...")
-  //    searchBuffer = null
-  
 
-//    if (event.key === 'Enter') {
-    
     setSearchText(event.target.value)
-//    } else {
-      return;
- //   }
+    return;
   }
 
 
@@ -60,4 +46,3 @@ function ShoppingList({ items }) {
 }
 
 export default ShoppingList;
-export {searchString}
