@@ -5,6 +5,10 @@ import Item from "./Item";
 
 
 function ShoppingList({ items }) {
+  // This is the state variable for the items.  Since we can add an item, React must re-render.
+  const [itemsToDisplay, addItemToDisplay] = useState(items)
+
+
   // These are the state variables for the selection operation
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchText, setSearchText ] = useState("")
@@ -24,14 +28,14 @@ function ShoppingList({ items }) {
 
 
  
-  function onItemFormSubmit(foo) {
-    console.log("onItemFormSubmit")
-    console.log(foo)
-    debugger
+  function onItemFormSubmit(newItem) {
+    // Add newItem to the state variable.
+    addItemToDisplay([...itemsToDisplay, newItem])
   }
 
-  const itemsToDisplay = items.filter((item) => {
+  const filteredItems = itemsToDisplay.filter((item) => {
     if (item.name.search(searchText) != -1) {
+      debugger
       if (selectedCategory === "All")  return true;
 
       return item.category === selectedCategory;
@@ -45,7 +49,7 @@ function ShoppingList({ items }) {
       <ItemForm onItemFormSubmit= {onItemFormSubmit} />
       <Filter onCategoryChange={handleCategoryChange} onSearchChange = {handleSearchChange} search = {searchText}/>
       <ul className="Items">
-        {itemsToDisplay.map((item) => (
+        {filteredItems.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
         ))}
       </ul>
