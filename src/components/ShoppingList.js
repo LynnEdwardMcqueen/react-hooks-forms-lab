@@ -5,8 +5,10 @@ import Item from "./Item";
 
 
 function ShoppingList({ items }) {
+  // These are the state variables for the selection operation
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchText, setSearchText ] = useState("")
+
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
@@ -21,6 +23,12 @@ function ShoppingList({ items }) {
   }
 
 
+ 
+  function onItemFormSubmit(foo) {
+    console.log("onItemFormSubmit")
+    console.log(foo)
+    debugger
+  }
 
   const itemsToDisplay = items.filter((item) => {
     if (item.name.search(searchText) != -1) {
@@ -31,10 +39,10 @@ function ShoppingList({ items }) {
       return false;
     }
   });
-
+  
   return (
     <div className="ShoppingList">
-      <ItemForm />
+      <ItemForm onItemFormSubmit= {onItemFormSubmit} />
       <Filter onCategoryChange={handleCategoryChange} onSearchChange = {handleSearchChange} search = {searchText}/>
       <ul className="Items">
         {itemsToDisplay.map((item) => (
